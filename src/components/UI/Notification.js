@@ -1,11 +1,23 @@
-import { Navbar, Nav, NavbarBrand } from "react-bootstrap";
-const Notification=(props)=>{
-return (
-    <Navbar fixed="top" bg='dark' variant="dark">
-        <NavbarBrand>{props.title}</NavbarBrand>
-        <Nav className="ms-auto">
-            <Nav.Item><p>{props.message}</p></Nav.Item></Nav>
-    </Navbar>
-)
-}
+import classes from './Notification.module.css';
+
+const Notification = (props) => {
+  let specialClasses = '';
+
+  if (props.status === 'error') {
+    specialClasses = classes.error;
+  }
+  if (props.status === 'success') {
+    specialClasses = classes.success;
+  }
+
+  const cssClasses = `${classes.notification} ${specialClasses}`;
+
+  return (
+    <section className={cssClasses}>
+      <h2>{props.title}</h2>
+      <p>{props.message}</p>
+    </section>
+  );
+};
+
 export default Notification;
